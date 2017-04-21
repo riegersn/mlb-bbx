@@ -1,0 +1,505 @@
+<?xml version="1.0"?>
+<window type="dialog" id="14010">
+ <defaultcontrol always="true">200</defaultcontrol>
+ <allowoverlay>no</allowoverlay>
+ <onload lang="python"><![CDATA[
+import xbmc
+mlb.loadFavorites()
+mc.GetWindow(14010).GetList(200).SetFocusedItem(0)
+mc.GetWindow(14010).GetControl(200).SetFocus()
+]]>
+</onload>
+	 <controls>
+      <control type="group" id="3000">
+         <control type="image">
+            <width>1280</width>
+            <height>720</height>
+            <texture>mlb-shade-overlay.png</texture>
+         </control>
+         <control type="group">
+            <animation effect="zoom" end="100" center="auto" time="150" condition="Control.IsVisible(3000)">Conditional</animation>
+            <animation effect="zoom" end="0" center="auto" time="150" condition="!Control.IsVisible(3000)">Conditional</animation>
+            <control type="image">
+               <width>1280</width>
+               <height>720</height>
+               <texture>settings/mlb-team-selection-bg.png</texture>
+            </control>
+            <control type="label">
+               <posx>495</posx>
+               <posy>148</posy>
+               <width>280</width>
+               <align>center</align>
+               <aligny>center</aligny>
+               <font>font26b</font>
+               <textcolor>white</textcolor>
+               <label>Favorite Teams</label>
+            </control>
+            <control type="group">
+               <posy>206</posy>
+               <posx>480</posx>
+               <control type="label">
+                  <width>250</width>
+                  <align>left</align>
+                  <aligny>center</aligny>
+                  <font>font26b</font>
+                  <textcolor>white</textcolor>
+                  <label>West</label>
+               </control>
+               <control type="label">
+                  <posx>230</posx>
+                  <width>250</width>
+                  <align>left</align>
+                  <aligny>center</aligny>
+                  <font>font26b</font>
+                  <textcolor>white</textcolor>
+                  <label>Central</label>
+               </control>
+               <control type="label">
+                  <posx>495</posx>
+                  <width>250</width>
+                  <align>left</align>
+                  <aligny>center</aligny>
+                  <font>font26b</font>
+                  <textcolor>white</textcolor>
+                  <label>East</label>
+               </control>
+            </control>
+            <control type="panel" id="200">
+               <posy>250</posy>
+               <posx>411</posx>
+               <width>222</width>
+               <height>170</height>
+               <onup>-</onup>
+               <onleft>-</onleft>
+               <onright>202</onright>
+               <ondown>203</ondown>
+               <pagecontrol>30</pagecontrol>
+               <scrolltime>0</scrolltime>
+               <preloaditems>1</preloaditems>
+               <orientation>vertical</orientation>
+               <itemlayout width="74" height="85">
+                  <control type="image">
+                     <posx>54</posx>
+                     <posy>-1</posy>
+                     <width>20</width>
+                     <height>19</height>
+                     <texture>mlb-star.png</texture>
+                     <visible>Listitem.IsSelected</visible>
+                  </control>
+                  <control type="image">
+                     <posx>5</posx>
+                     <posy>10</posy>
+                     <width>54</width>
+                     <height>54</height>
+                     <texture>$INFO[Listitem.Thumb]</texture>
+                  </control>
+               </itemlayout>
+               <focusedlayout width="74" height="85">
+                  <control type="image">
+                     <posx>54</posx>
+                     <posy>-1</posy>
+                     <width>20</width>
+                     <height>19</height>
+                     <texture>mlb-star.png</texture>
+                     <visible>Listitem.IsSelected</visible>
+                  </control>
+                  <control type="group">
+                     <posx>5</posx>
+                     <posy>10</posy>
+                     <control type="image">
+                        <posx>-3</posx>
+                        <posy>-3</posy>
+                        <width>60</width>
+                        <height>60</height>
+                        <texture>settings/mlb-team-select-on.png</texture>
+                        <visible>Container(200).HasFocus</visible>
+                     </control>
+                     <control type="image">
+                        <width>54</width>
+                        <height>54</height>
+                        <texture>$INFO[Listitem.Thumb]</texture>
+                     </control>
+                  </control>
+               </focusedlayout>
+               <content type="url" url="">
+                  <onclick lang="python">
+                     <![CDATA[
+mlb.selectFavorite(200)
+]]>
+</onclick>
+               </content>
+            </control>
+            <control type="panel" id="202">
+               <posy>250</posy>
+               <posx>655</posx>
+               <width>222</width>
+               <height>170</height>
+               <onup>-</onup>
+               <onleft>200</onleft>
+               <onright>201</onright>
+               <ondown>205</ondown>
+               <pagecontrol>30</pagecontrol>
+               <scrolltime>0</scrolltime>
+               <preloaditems>1</preloaditems>
+               <orientation>vertical</orientation>
+               <itemlayout width="74" height="85">
+                  <control type="image">
+                     <posx>54</posx>
+                     <posy>-1</posy>
+                     <width>20</width>
+                     <height>19</height>
+                     <texture>mlb-star.png</texture>
+                     <visible>Listitem.IsSelected</visible>
+                  </control>
+                  <control type="image">
+                     <posx>5</posx>
+                     <posy>10</posy>
+                     <width>54</width>
+                     <height>54</height>
+                     <texture>$INFO[Listitem.Thumb]</texture>
+                  </control>
+               </itemlayout>
+               <focusedlayout width="74" height="85">
+                  <control type="image">
+                     <posx>54</posx>
+                     <posy>-1</posy>
+                     <width>20</width>
+                     <height>19</height>
+                     <texture>mlb-star.png</texture>
+                     <visible>Listitem.IsSelected</visible>
+                  </control>
+                  <control type="group">
+                     <posx>5</posx>
+                     <posy>10</posy>
+                     <control type="image">
+                        <posx>-3</posx>
+                        <posy>-3</posy>
+                        <width>60</width>
+                        <height>60</height>
+                        <texture>settings/mlb-team-select-on.png</texture>
+                        <visible>Container(202).HasFocus</visible>
+                     </control>
+                     <control type="image">
+                        <width>54</width>
+                        <height>54</height>
+                        <texture>$INFO[Listitem.Thumb]</texture>
+                     </control>
+                  </control>
+               </focusedlayout>
+               <content type="url">
+                  <onclick lang="python">
+                     <![CDATA[
+mlb.selectFavorite(202)
+]]>
+</onclick>
+               </content>
+            </control>
+            <control type="panel" id="201">
+               <posy>250</posy>
+               <posx>898</posx>
+               <width>222</width>
+               <height>170</height>
+               <onup>-</onup>
+               <onleft>202</onleft>
+               <onright>-</onright>
+               <ondown>204</ondown>
+               <pagecontrol>30</pagecontrol>
+               <scrolltime>0</scrolltime>
+               <preloaditems>1</preloaditems>
+               <orientation>vertical</orientation>
+               <itemlayout width="74" height="85">
+                  <control type="image">
+                     <posx>54</posx>
+                     <posy>-1</posy>
+                     <width>20</width>
+                     <height>19</height>
+                     <texture>mlb-star.png</texture>
+                     <visible>Listitem.IsSelected</visible>
+                  </control>
+                  <control type="image">
+                     <posx>5</posx>
+                     <posy>10</posy>
+                     <width>54</width>
+                     <height>54</height>
+                     <texture>$INFO[Listitem.Thumb]</texture>
+                  </control>
+               </itemlayout>
+               <focusedlayout width="74" height="85">
+                  <control type="image">
+                     <posx>54</posx>
+                     <posy>-1</posy>
+                     <width>20</width>
+                     <height>19</height>
+                     <texture>mlb-star.png</texture>
+                     <visible>Listitem.IsSelected</visible>
+                  </control>
+                  <control type="group">
+                     <posx>5</posx>
+                     <posy>10</posy>
+                     <control type="image">
+                        <posx>-3</posx>
+                        <posy>-3</posy>
+                        <width>60</width>
+                        <height>60</height>
+                        <texture>settings/mlb-team-select-on.png</texture>
+                        <visible>Container(201).HasFocus</visible>
+                     </control>
+                     <control type="image">
+                        <width>54</width>
+                        <height>54</height>
+                        <texture>$INFO[Listitem.Thumb]</texture>
+                     </control>
+                  </control>
+               </focusedlayout>
+               <content type="url">
+                  <onclick lang="python">
+                     <![CDATA[
+mlb.selectFavorite(201)
+]]>
+</onclick>
+               </content>
+            </control>
+            <control type="group" id="3200">
+               <control type="panel" id="203">
+                  <posy>445</posy>
+                  <posx>411</posx>
+                  <width>222</width>
+                  <height>170</height>
+                  <onup>200</onup>
+                  <onleft>-</onleft>
+                  <onright>205</onright>
+                  <ondown>3100</ondown>
+                  <pagecontrol>30</pagecontrol>
+                  <scrolltime>0</scrolltime>
+                  <preloaditems>1</preloaditems>
+                  <orientation>vertical</orientation>
+                  <itemlayout width="74" height="85">
+                     <control type="image">
+                        <posx>54</posx>
+                        <posy>-1</posy>
+                        <width>20</width>
+                        <height>19</height>
+                        <texture>mlb-star.png</texture>
+                        <visible>Listitem.IsSelected</visible>
+                     </control>
+                     <control type="image">
+                        <posx>5</posx>
+                        <posy>10</posy>
+                        <width>54</width>
+                        <height>54</height>
+                        <texture>$INFO[Listitem.Thumb]</texture>
+                     </control>
+                  </itemlayout>
+                  <focusedlayout width="74" height="85">
+                     <control type="image">
+                        <posx>54</posx>
+                        <posy>-1</posy>
+                        <width>20</width>
+                        <height>19</height>
+                        <texture>mlb-star.png</texture>
+                        <visible>Listitem.IsSelected</visible>
+                     </control>
+                     <control type="group">
+                        <posx>5</posx>
+                        <posy>10</posy>
+                        <control type="image">
+                           <posx>-3</posx>
+                           <posy>-3</posy>
+                           <width>60</width>
+                           <height>60</height>
+                           <texture>settings/mlb-team-select-on.png</texture>
+                           <visible>Container(203).HasFocus</visible>
+                        </control>
+                        <control type="image">
+                           <width>54</width>
+                           <height>54</height>
+                           <texture>$INFO[Listitem.Thumb]</texture>
+                        </control>
+                     </control>
+                  </focusedlayout>
+                  <content type="url">
+                     <onclick lang="python">
+                        <![CDATA[
+mlb.selectFavorite(203)
+]]>
+</onclick>
+                  </content>
+               </control>
+               <control type="panel" id="205">
+                  <posy>445</posy>
+                  <posx>655</posx>
+                  <width>222</width>
+                  <height>170</height>
+                  <onup>202</onup>
+                  <onleft>203</onleft>
+                  <onright>204</onright>
+                  <ondown>3100</ondown>
+                  <pagecontrol>30</pagecontrol>
+                  <scrolltime>0</scrolltime>
+                  <preloaditems>1</preloaditems>
+                  <orientation>vertical</orientation>
+                  <itemlayout width="74" height="85">
+                     <control type="image">
+                        <posx>54</posx>
+                        <posy>-1</posy>
+                        <width>20</width>
+                        <height>19</height>
+                        <texture>mlb-star.png</texture>
+                        <visible>Listitem.IsSelected</visible>
+                     </control>
+                     <control type="image">
+                        <posx>5</posx>
+                        <posy>10</posy>
+                        <width>54</width>
+                        <height>54</height>
+                        <texture>$INFO[Listitem.Thumb]</texture>
+                     </control>
+                  </itemlayout>
+                  <focusedlayout width="74" height="85">
+                     <control type="image">
+                        <posx>54</posx>
+                        <posy>-1</posy>
+                        <width>20</width>
+                        <height>19</height>
+                        <texture>mlb-star.png</texture>
+                        <visible>Listitem.IsSelected</visible>
+                     </control>
+                     <control type="group">
+                        <posx>5</posx>
+                        <posy>10</posy>
+                        <control type="image">
+                           <posx>-3</posx>
+                           <posy>-3</posy>
+                           <width>60</width>
+                           <height>60</height>
+                           <texture>settings/mlb-team-select-on.png</texture>
+                           <visible>Container(205).HasFocus</visible>
+                        </control>
+                        <control type="image">
+                           <width>54</width>
+                           <height>54</height>
+                           <texture>$INFO[Listitem.Thumb]</texture>
+                        </control>
+                     </control>
+                  </focusedlayout>
+                  <content type="url">
+                     <onclick lang="python">
+                        <![CDATA[
+mlb.selectFavorite(205)
+]]>
+</onclick>
+                  </content>
+               </control>
+               <control type="panel" id="204">
+                  <posy>445</posy>
+                  <posx>898</posx>
+                  <width>222</width>
+                  <height>170</height>
+                  <onup>201</onup>
+                  <onleft>205</onleft>
+                  <onright>-</onright>
+                  <ondown>3100</ondown>
+                  <pagecontrol>30</pagecontrol>
+                  <scrolltime>0</scrolltime>
+                  <preloaditems>1</preloaditems>
+                  <orientation>vertical</orientation>
+                  <itemlayout width="74" height="85">
+                     <control type="image">
+                        <posx>54</posx>
+                        <posy>-1</posy>
+                        <width>20</width>
+                        <height>19</height>
+                        <texture>mlb-star.png</texture>
+                        <visible>Listitem.IsSelected</visible>
+                     </control>
+                     <control type="image">
+                        <posx>5</posx>
+                        <posy>10</posy>
+                        <width>54</width>
+                        <height>54</height>
+                        <texture>$INFO[Listitem.Thumb]</texture>
+                     </control>
+                  </itemlayout>
+                  <focusedlayout width="74" height="85">
+                     <control type="image">
+                        <posx>54</posx>
+                        <posy>-1</posy>
+                        <width>20</width>
+                        <height>19</height>
+                        <texture>mlb-star.png</texture>
+                        <visible>Listitem.IsSelected</visible>
+                     </control>
+                     <control type="group">
+                        <posx>5</posx>
+                        <posy>10</posy>
+                        <control type="image">
+                           <posx>-3</posx>
+                           <posy>-3</posy>
+                           <width>60</width>
+                           <height>60</height>
+                           <texture>settings/mlb-team-select-on.png</texture>
+                           <visible>Container(204).HasFocus</visible>
+                        </control>
+                        <control type="image">
+                           <width>54</width>
+                           <height>54</height>
+                           <texture>$INFO[Listitem.Thumb]</texture>
+                        </control>
+                     </control>
+                  </focusedlayout>
+                  <content type="url">
+                     <onclick lang="python">
+                        <![CDATA[
+mlb.selectFavorite(204)
+]]>
+</onclick>
+                  </content>
+               </control>
+            </control>
+            <control type="grouplist" id="3100">
+               <posy>627</posy>
+               <posx>760</posx>
+               <onup>3200</onup>
+               <itemgap>4</itemgap>
+               <orientation>horizontal</orientation>
+               <control type="button" id="3101">
+                  <width>119</width>
+                  <height>39</height>
+                  <label>Save</label>
+                  <font>font22b</font>
+                  <align>center</align>
+                  <aligny>center</aligny>
+                  <textcolor>white</textcolor>
+                  <focusedcolor>white</focusedcolor>
+                  <texturefocus>mlb-selected.png</texturefocus>
+                  <texturenofocus>-</texturenofocus>
+                  <onclick lang="python">
+                     <![CDATA[
+mlb.myTracker.trackEvent("Button", "Click", "Save Favorite Teams")
+mlb.saveFavorites()
+xbmc.executebuiltin("Dialog.Close(14010)")
+]]>
+</onclick>
+               </control>
+               <control type="button" id="3102">
+                  <width>119</width>
+                  <height>39</height>
+                  <label>Cancel</label>
+                  <font>font22b</font>
+                  <align>center</align>
+                  <aligny>center</aligny>
+                  <textcolor>white</textcolor>
+                  <focusedcolor>white</focusedcolor>
+                  <texturefocus>mlb-selected.png</texturefocus>
+                  <texturenofocus>-</texturenofocus>
+                  <onclick lang="python">
+                     <![CDATA[
+xbmc.executebuiltin("Dialog.Close(14010)")
+]]>
+</onclick>
+               </control>
+            </control>
+         </control>
+      </control>
+	</controls>
+</window>

@@ -1,0 +1,15 @@
+<app>
+  <id>mlb</id>
+  <name>MLB.TV</name>
+  <version>3.41</version>
+  <description>Watch every regular season game LIVE or on demand, almost 100 games per week.</description>
+  <thumb>http://dir.boxee.tv/apps/mlb/thumb.png</thumb>
+  <repository>http://dir.boxee.tv/apps</repository>
+  <media>video</media>
+  <copyright>Boxee</copyright>
+  <email>support@boxee.tv</email>
+  <type>skin</type>
+  <startWindow>launch</startWindow>
+  <platform>all</platform>
+  <minversion>1.1.0</minversion>
+</app>

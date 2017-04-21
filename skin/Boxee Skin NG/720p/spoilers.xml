@@ -1,0 +1,124 @@
+<?xml version="1.0"?>
+<window type="dialog" id="14011">
+ <defaultcontrol always="true">5050</defaultcontrol>
+ <allowoverlay>no</allowoverlay>
+ <onload lang="python"><![CDATA[
+import xbmc
+]]>
+</onload>
+	 <controls>
+      <control type="group" id="5000">
+         <width>1280</width>
+         <height>720</height>
+         <control type="image">
+            <posy>-2</posy>
+            <width>1280</width>
+            <height>722</height>
+            <texture>mlb-shade-overlay.png</texture>
+         </control>
+         <control type="group">
+            <posy>150</posy>
+            <posx>420</posx>
+            <animation effect="zoom" end="100" center="auto" time="150" condition="Control.IsVisible(5000)">Conditional</animation>
+            <animation effect="zoom" end="0" center="auto" time="150" condition="!Control.IsVisible(5000)">Conditional</animation>
+            <control type="image">
+               <width>667</width>
+               <height>420</height>
+               <texture>settings/mlb-settings-popup-bg.png</texture>
+            </control>
+            <control type="label">
+               <posx></posx>
+               <posy>15</posy>
+               <width>667</width>
+               <height>35</height>
+               <align>center</align>
+               <aligny>center</aligny>
+               <font>font28b</font>
+               <textcolor>white</textcolor>
+               <label>Hide / Reveal Scores</label>
+            </control>
+            <control type="button" id="5060">
+               <posy>358</posy>
+               <posx>10</posx>
+               <width>647</width>
+               <height>52</height>
+               <onup>5052</onup>
+               <ondown>-</ondown>
+               <onright>-</onright>
+               <onleft>-</onleft>
+               <label>Cancel</label>
+               <font>font28b</font>
+               <align>center</align>
+               <aligny>center</aligny>
+               <textcolor>white</textcolor>
+               <focusedcolor>white</focusedcolor>
+               <texturefocus>mlb-selected.png</texturefocus>
+               <texturenofocus>-</texturenofocus>
+               <onclick lang="python">
+                  <![CDATA[
+xbmc.executebuiltin("Dialog.Close(14011)")
+]]>
+</onclick>
+            </control>
+            <control type="grouplist" id="5050">
+               <posx>12</posx>
+               <posy>78</posy>
+               <width>643</width>
+               <height>260</height>
+               <onup>-</onup>
+               <ondown>5060</ondown>
+               <itemgap>2</itemgap>
+               <orientation>vertical</orientation>
+               <control type="togglebutton" id="5051">
+                  <width>643</width>
+                  <height>63</height>
+                  <label>Show All Scores</label>
+                  <font>font23b</font>
+                  <align>left</align>
+                  <aligny>center</aligny>
+                  <textcolor>white</textcolor>
+                  <focusedcolor>white</focusedcolor>
+                  <texturefocus>settings/mlb-settings-listitem-on.png</texturefocus>
+                  <texturenofocus>settings/mlb-settings-listitem.png</texturenofocus>
+                  <alttexturefocus>settings/mlb-settings-listitem-on2.png</alttexturefocus>
+                  <alttexturenofocus>settings/mlb-settings-listitem2.png</alttexturenofocus>
+                  <usealttexture>!App.HasSetting(hide_scores)</usealttexture>
+                  <textoffsetx>60</textoffsetx>
+                  <onclick>App.Reset(hide_scores)</onclick>
+                  <onclick lang="python">
+                     <![CDATA[
+mlb.myTracker.trackEvent("Button", "Click", "Show All Scores")
+mlb.saveArchiveSpoiler('F')
+xbmc.executebuiltin("Dialog.Close(14011)")
+]]>
+</onclick>
+               </control>
+               <control type="togglebutton" id="5052">
+                  <width>643</width>
+                  <height>63</height>
+                  <label>Hide All Scores</label>
+                  <font>font23b</font>
+                  <align>left</align>
+                  <aligny>center</aligny>
+                  <textcolor>white</textcolor>
+                  <focusedcolor>white</focusedcolor>
+                  <texturefocus>settings/mlb-settings-listitem-on.png</texturefocus>
+                  <texturenofocus>settings/mlb-settings-listitem.png</texturenofocus>
+                  <alttexturefocus>settings/mlb-settings-listitem-on2.png</alttexturefocus>
+                  <alttexturenofocus>settings/mlb-settings-listitem2.png</alttexturenofocus>
+                  <usealttexture>App.HasSetting(hide_scores)</usealttexture>
+                  <textoffsetx>60</textoffsetx>
+                  <onclick>App.SetBool(hide_scores, true)</onclick>
+                  <onclick lang="python">
+                     <![CDATA[
+mlb.myTracker.trackEvent("Button", "Click", "Hide All Scores")
+mlb.saveArchiveSpoiler('T')
+xbmc.executebuiltin("Dialog.Close(14011)")
+]]>
+</onclick>
+               </control>
+            </control>
+         </control>
+      </control>
+	 </controls>
+</window>

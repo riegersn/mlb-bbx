@@ -1,0 +1,325 @@
+<?xml version="1.0"?>
+<window type="window" id="14003">
+   <defaultcontrol always="true">121</defaultcontrol>
+   <allowoverlay>no</allowoverlay>
+   <onload lang="python">
+      <![CDATA[
+from mlb import MLB
+mlb = MLB()
+mc.GetActiveWindow().GetControl(121).SetFocus()
+mlb.myTracker.trackView("Settings")
+try:
+   device_id = mc.GetDeviceId()
+except:
+   device_id = None
+]]>
+</onload>
+   <controls>
+      <control type="group">
+         <control type="image">
+            <visible>!Player.HasVideo</visible>
+            <width>1280</width>
+            <height>720</height>
+            <texture>mlb-bg.png</texture>
+         </control>
+         <control type="videowindow">
+            <visible>Player.HasVideo</visible>
+            <width>1280</width>
+            <height>720</height>
+         </control>
+         <control type="image">
+            <visible>Player.HasVideo</visible>
+            <width>1280</width>
+            <height>720</height>
+            <texture>mlb-bg.png</texture>
+            <colordiffuse>99FFFFFF</colordiffuse>
+         </control>
+         <control type="image">
+            <width>1280</width>
+            <height>727</height>
+            <texture>settings/mlb-settings.png</texture>
+         </control>
+         <control type="button" id="90">
+            <posy>18</posy>
+            <posx>1080</posx>
+            <width>141</width>
+            <height>41</height>
+            <onup>-</onup>
+            <ondown>120</ondown>
+            <onright>-</onright>
+            <onleft>-</onleft>
+            <label>Now Playing</label>
+            <font>font18b</font>
+            <align>center</align>
+            <aligny>top</aligny>
+            <textcolor>white</textcolor>
+            <focusedcolor>white</focusedcolor>
+            <textoffsety>9</textoffsety>
+            <texturefocus>buttons/mlb-login-on.png</texturefocus>
+            <texturenofocus>buttons/mlb-login.png</texturenofocus>
+            <visible>Player.HasMedia + !Player.Caching + !Window.IsVisible(DialogProgress.xml)</visible>
+            <animation effect="zoom" tween="elastic" start="110" end="100" center="auto" time="500" reversible="true">Focus</animation>
+            <onclick lang="python">
+               <![CDATA[
+mlb.myTracker.trackEvent("Button", "Click", "Now Playing")
+if mc.GetPlayer().IsPlayingAudio(): mc.ActivateWindow(12006)
+elif mc.GetPlayer().IsPlayingVideo(): mc.ActivateWindow(12005)
+]]>
+</onclick>
+         </control>
+         <control type="label">
+            <posy>18</posy>
+            <posx>1050</posx>
+            <width>200</width>
+            <height>45</height>
+            <align>center</align>
+            <aligny>center</aligny>
+            <font>font30b</font>
+            <textcolor>30ffffff</textcolor>
+            <info>System.Time</info>
+            <visible>!Control.IsVisible(90)</visible>
+         </control>
+         <control type="label">
+            <posy>55</posy>
+            <posx>1050</posx>
+            <width>200</width>
+            <height>45</height>
+            <align>center</align>
+            <aligny>center</aligny>
+            <font>font30b</font>
+            <textcolor>30ffffff</textcolor>
+            <info>System.Time</info>
+            <visible>Control.IsVisible(90)</visible>
+         </control>
+         <control type="group" id="1000">
+            <control type="image">
+               <posy>24</posy>
+               <posx>26</posx>
+               <width>180</width>
+               <height>53</height>
+               <texture>mlb-badge.png</texture>
+               <aspectratio>keep</aspectratio>
+            </control>
+            <control type="label">
+               <posx>27</posx>
+               <posy>76</posy>
+               <width>250</width>
+               <height>20</height>
+               <align>left</align>
+               <aligny>center</aligny>
+               <font>font18b</font>
+               <textcolor>white</textcolor>
+               <info>app.String(username)</info>
+               <visible>!IsEmpty(app.String(username)) | !IsEmpty(app.String(password))</visible>
+            </control>
+            <control type="button" id="1004">
+               <posx>564</posx>
+               <posy>681</posy>
+               <width>152</width>
+               <height>39</height>
+               <onup>120</onup>
+               <onleft>1007</onleft>
+               <onright>1005</onright>
+               <onleft>-</onleft>
+               <visible>App.HasSetting(14000)</visible>
+               <texturenofocus>buttons/mlb-today3.png</texturenofocus>
+               <texturefocus>buttons/mlb-today-on3.png</texturefocus>
+               <onclick lang="python">
+                  <![CDATA[
+mc.ActivateWindow(14000)
+]]>
+</onclick>
+               <animation effect="zoom" tween="elastic" start="110" end="100" center="auto" time="500" reversible="false">Focus</animation>
+            </control>
+            <control type="button" id="1005">
+               <posx>564</posx>
+               <posy>681</posy>
+               <width>152</width>
+               <height>39</height>
+               <onup>120</onup>
+               <onleft>1007</onleft>
+               <onright>1006</onright>
+               <visible>App.HasSetting(14001)</visible>
+               <texturenofocus>buttons/mlb-calendar2.png</texturenofocus>
+               <texturefocus>buttons/mlb-calendar-on2.png</texturefocus>
+               <onclick lang="python">
+                  <![CDATA[
+mc.ActivateWindow(14001)
+]]>
+</onclick>
+               <animation effect="zoom" tween="elastic" start="110" end="100" center="auto" time="500" reversible="false">Focus</animation>
+            </control>
+            <control type="button" id="1006">
+               <posx>564</posx>
+               <posy>681</posy>
+               <width>152</width>
+               <height>39</height>
+               <onup>120</onup>
+               <onleft>1007</onleft>
+               <onright>-</onright>
+               <visible>App.HasSetting(14002)</visible>
+               <texturenofocus>buttons/mlb-standings2.png</texturenofocus>
+               <texturefocus>buttons/mlb-standings-on2.png</texturefocus>
+               <onclick lang="python">
+                  <![CDATA[
+mc.ActivateWindow(14002)
+]]>
+</onclick>
+               <animation effect="zoom" tween="elastic" start="110" end="100" center="auto" time="500" reversible="false">Focus</animation>
+            </control>
+            <control type="button" id="1007">
+               <posy>610</posy>
+               <posx>70</posx>
+               <width>50</width>
+               <height>48</height>
+               <onup>120</onup>
+               <ondown>1004</ondown>
+               <onright>1004</onright>
+               <onleft>-</onleft>
+               <label>Home</label>
+               <font>font23</font>
+               <align>center</align>
+               <aligny>top</aligny>
+               <textcolor>white</textcolor>
+               <focusedcolor>white</focusedcolor>
+               <textoffsety>48</textoffsety>
+               <visible>!App.HasSetting(14000)</visible>
+               <texturefocus>settings/mlb-home-btn-on.png</texturefocus>
+               <texturenofocus>settings/mlb-home-btn.png</texturenofocus>
+               <onclick lang="python">
+                  <![CDATA[
+mc.ActivateWindow(14000)
+]]>
+</onclick>
+               <animation effect="zoom" tween="elastic" start="110" end="100" center="auto" time="500" reversible="false">Focus</animation>
+            </control>
+         </control>
+         <control type="grouplist">
+            <posy>172</posy>
+            <posx>540</posx>
+            <control type="label">
+               <width>200</width>
+               <height>22</height>
+               <font>font28b</font>
+               <align>center</align>
+               <textcolor>white</textcolor>
+               <label>Settings</label>
+            </control>
+         </control>
+         <control type="grouplist" id="120">
+            <posx>316</posx>
+            <posy>225</posy>
+            <width>647</width>
+            <height>340</height>
+            <onup>90</onup>
+            <ondown>1000</ondown>
+            <itemgap>2</itemgap>
+            <orientation>vertical</orientation>
+            <control type="button" id="121">
+               <width>647</width>
+               <height>65</height>
+               <label>Favorite Team(s)</label>
+               <font>font23b</font>
+               <align>left</align>
+               <aligny>center</aligny>
+               <textcolor>white</textcolor>
+               <focusedcolor>white</focusedcolor>
+               <texturefocus>settings/mlb-settings-listitem-on.png</texturefocus>
+               <texturenofocus>settings/mlb-settings-listitem.png</texturenofocus>
+               <textoffsetx>15</textoffsetx>
+               <onclick lang="python">
+                  <![CDATA[
+mlb.myTracker.trackView("Favorite Teams")
+mc.ActivateWindow(14010)
+]]>
+</onclick>
+            </control>
+            <control type="button" id="122">
+               <width>647</width>
+               <height>65</height>
+               <label>Hide / Reveal Scores</label>
+               <font>font23b</font>
+               <align>left</align>
+               <aligny>center</aligny>
+               <textcolor>white</textcolor>
+               <focusedcolor>white</focusedcolor>
+               <texturefocus>settings/mlb-settings-listitem-on.png</texturefocus>
+               <texturenofocus>settings/mlb-settings-listitem.png</texturenofocus>
+               <textoffsetx>15</textoffsetx>
+               <onclick lang="python">
+                  <![CDATA[
+mlb.myTracker.trackView("Hide/Reveal Scores")
+mlb.updateArchiveSpoiler()
+mc.ActivateWindow(14011)
+]]>
+</onclick>
+            </control>
+            <control type="button" id="123">
+               <width>647</width>
+               <height>65</height>
+               <label>Set Video Quality</label>
+               <font>font23b</font>
+               <align>left</align>
+               <aligny>center</aligny>
+               <textcolor>white</textcolor>
+               <focusedcolor>white</focusedcolor>
+               <texturefocus>settings/mlb-settings-listitem-on.png</texturefocus>
+               <texturenofocus>settings/mlb-settings-listitem.png</texturenofocus>
+               <textoffsetx>15</textoffsetx>
+               <onclick lang="python">
+                  <![CDATA[
+mlb.myTracker.trackView("Set Video Quality")
+mc.ActivateWindow(14014)
+]]>
+</onclick>
+            </control>
+            <!-- Friday, 24 May 2013 // Removed due to client issues with MLB HLS timestamps -->
+<!--             <control type="button" id="124">
+               <width>647</width>
+               <height>65</height>
+               <label>Game Events</label>
+               <font>font23b</font>
+               <align>left</align>
+               <aligny>center</aligny>
+               <textcolor>white</textcolor>
+               <focusedcolor>white</focusedcolor>
+               <texturefocus>settings/mlb-settings-listitem-on.png</texturefocus>
+               <texturenofocus>settings/mlb-settings-listitem.png</texturenofocus>
+               <textoffsetx>15</textoffsetx>
+               <onclick lang="python">
+                  <![CDATA[
+if device_id:
+   mlb.myTracker.trackView("Set Game Markers")
+   mc.ActivateWindow(14012)
+else:
+   mc.ShowDialogOk("MLB.tv", "We're sorry - Game Events are only available on Boxee embedded devices.")
+]]>
+</onclick>
+            </control> -->
+            <!-- Friday, 24 May 2013 // Removed, was not working -->
+<!--             <control type="button" id="125">
+               <width>647</width>
+               <height>65</height>
+               <label>PITCH f/x</label>
+               <font>font23b</font>
+               <align>left</align>
+               <aligny>center</aligny>
+               <textcolor>white</textcolor>
+               <focusedcolor>white</focusedcolor>
+               <texturefocus>settings/mlb-settings-listitem-on.png</texturefocus>
+               <texturenofocus>settings/mlb-settings-listitem.png</texturenofocus>
+               <textoffsetx>15</textoffsetx>
+               <onclick lang="python">
+                  <![CDATA[
+if device_id:
+   mlb.myTracker.trackView("Set Pitch Popups")
+   mc.ActivateWindow(14013)
+else:
+   mc.ShowDialogOk("MLB.tv", "We're sorry - PITCH f/x is only available on Boxee embedded devices.")
+]]>
+</onclick>
+            </control> -->
+         </control>
+      </control>
+   </controls>
+</window>

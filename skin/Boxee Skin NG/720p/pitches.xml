@@ -1,0 +1,196 @@
+<?xml version="1.0"?>
+<window type="dialog" id="14013">
+ <defaultcontrol always="true">5050</defaultcontrol>
+ <allowoverlay>no</allowoverlay>
+ <onload lang="python"><![CDATA[
+import xbmc
+pitches = mc.GetApp().GetLocalConfig().GetValue("pitches")
+if pitches:
+	if pitches is "mph":
+		mc.GetWindow(14013).GetToggleButton(5052).SetSelected(True)
+	elif pitches is "km/h":
+		mc.GetWindow(14013).GetToggleButton(5053).SetSelected(True)
+	elif pitches is "nasty":
+		mc.GetWindow(14013).GetToggleButton(5054).SetSelected(True)
+	else:
+		mc.GetWindow(14013).GetToggleButton(5051).SetSelected(True)
+else:
+	mc.GetWindow(14013).GetToggleButton(5051).SetSelected(True)
+]]>
+</onload>
+	 <controls>
+      <control type="group" id="5000">
+         <width>1280</width>
+         <height>720</height>
+         <control type="image">
+            <posy>-2</posy>
+            <width>1280</width>
+            <height>722</height>
+            <texture>mlb-shade-overlay.png</texture>
+         </control>
+         <control type="group">
+            <posy>150</posy>
+            <posx>420</posx>
+            <animation effect="zoom" end="100" center="auto" time="150" condition="Control.IsVisible(5000)">Conditional</animation>
+            <animation effect="zoom" end="0" center="auto" time="150" condition="!Control.IsVisible(5000)">Conditional</animation>
+            <control type="image">
+               <width>667</width>
+               <height>420</height>
+               <texture>settings/mlb-settings-popup-bg.png</texture>
+            </control>
+            <control type="label">
+               <posx></posx>
+               <posy>15</posy>
+               <width>667</width>
+               <height>35</height>
+               <align>center</align>
+               <aligny>center</aligny>
+               <font>font28b</font>
+               <textcolor>white</textcolor>
+               <label>PITCH f/x</label>
+            </control>
+            <control type="button" id="5060">
+               <posy>358</posy>
+               <posx>10</posx>
+               <width>647</width>
+               <height>52</height>
+               <onup>5052</onup>
+               <ondown>-</ondown>
+               <onright>-</onright>
+               <onleft>-</onleft>
+               <label>Cancel</label>
+               <font>font28b</font>
+               <align>center</align>
+               <aligny>center</aligny>
+               <textcolor>white</textcolor>
+               <focusedcolor>white</focusedcolor>
+               <texturefocus>mlb-selected.png</texturefocus>
+               <texturenofocus>-</texturenofocus>
+               <onclick lang="python">
+                  <![CDATA[
+xbmc.executebuiltin("Dialog.Close(14013)")
+]]>
+</onclick>
+            </control>
+            <control type="grouplist" id="5050">
+               <posx>12</posx>
+               <posy>78</posy>
+               <width>643</width>
+               <height>260</height>
+               <onup>-</onup>
+               <ondown>5060</ondown>
+               <itemgap>2</itemgap>
+               <orientation>vertical</orientation>
+               <control type="togglebutton" id="5051">
+                  <width>643</width>
+                  <height>63</height>
+                  <label>Off</label>
+                  <font>font23b</font>
+                  <align>left</align>
+                  <aligny>center</aligny>
+                  <textcolor>white</textcolor>
+                  <focusedcolor>white</focusedcolor>
+                  <texturefocus>settings/mlb-settings-listitem-on.png</texturefocus>
+                  <texturenofocus>settings/mlb-settings-listitem.png</texturenofocus>
+                  <alttexturefocus>settings/mlb-settings-listitem-on2.png</alttexturefocus>
+                  <alttexturenofocus>settings/mlb-settings-listitem2.png</alttexturenofocus>
+                  <usealttexture>App.HasSetting(none)</usealttexture>
+                  <textoffsetx>60</textoffsetx>
+                  <onclick>App.Reset(mph)</onclick>
+                  <onclick>App.Reset(km/h)</onclick>
+                  <onclick>App.Reset(nasty)</onclick>
+                  <onclick>App.SetBool(none, true)</onclick>
+                  <onclick lang="python">
+                     <![CDATA[
+mc.GetApp().GetLocalConfig().SetValue("pitches", "none")
+mc.ShowDialogNotification('PITCH f/x turned off.','mlb-icon.png')
+xbmc.executebuiltin("Dialog.Close(14013)")
+]]>
+</onclick>
+               </control>
+               <control type="togglebutton" id="5052">
+                  <width>643</width>
+                  <height>63</height>
+                  <label>Speed (mph)</label>
+                  <font>font23b</font>
+                  <align>left</align>
+                  <aligny>center</aligny>
+                  <textcolor>white</textcolor>
+                  <focusedcolor>white</focusedcolor>
+                  <texturefocus>settings/mlb-settings-listitem-on.png</texturefocus>
+                  <texturenofocus>settings/mlb-settings-listitem.png</texturenofocus>
+                  <alttexturefocus>settings/mlb-settings-listitem-on2.png</alttexturefocus>
+                  <alttexturenofocus>settings/mlb-settings-listitem2.png</alttexturenofocus>
+                  <usealttexture>App.HasSetting(mph)</usealttexture>
+                  <textoffsetx>60</textoffsetx>
+                  <onclick>App.Reset(none)</onclick>
+                  <onclick>App.Reset(km/h)</onclick>
+                  <onclick>App.Reset(nasty)</onclick>
+                  <onclick>App.SetBool(mph, true)</onclick>
+                  <onclick lang="python">
+                     <![CDATA[
+mc.GetApp().GetLocalConfig().SetValue("pitches", "mph")
+mc.ShowDialogNotification('PITCH f/x set to Speed (mph)','mlb-icon.png')
+xbmc.executebuiltin("Dialog.Close(14013)")
+]]>
+</onclick>
+               </control>
+               <control type="togglebutton" id="5053">
+                  <width>643</width>
+                  <height>63</height>
+                  <label>Speed (km/h)</label>
+                  <font>font23b</font>
+                  <align>left</align>
+                  <aligny>center</aligny>
+                  <textcolor>white</textcolor>
+                  <focusedcolor>white</focusedcolor>
+                  <texturefocus>settings/mlb-settings-listitem-on.png</texturefocus>
+                  <texturenofocus>settings/mlb-settings-listitem.png</texturenofocus>
+                  <alttexturefocus>settings/mlb-settings-listitem-on2.png</alttexturefocus>
+                  <alttexturenofocus>settings/mlb-settings-listitem2.png</alttexturenofocus>
+                  <usealttexture>App.HasSetting(km/h)</usealttexture>
+                  <textoffsetx>60</textoffsetx>
+                  <onclick>App.Reset(none)</onclick>
+                  <onclick>App.Reset(mph)</onclick>
+                  <onclick>App.Reset(nasty)</onclick>
+                  <onclick>App.SetBool(km/h, true)</onclick>
+                  <onclick lang="python">
+                     <![CDATA[
+mc.GetApp().GetLocalConfig().SetValue("pitches", "km/h")
+mc.ShowDialogNotification('PITCH f/x set to Speed(km/h)','mlb-icon.png')
+xbmc.executebuiltin("Dialog.Close(14013)")
+]]>
+</onclick>
+               </control>
+               <control type="togglebutton" id="5054">
+                  <width>643</width>
+                  <height>63</height>
+                  <label>Nasty Factor</label>
+                  <font>font23b</font>
+                  <align>left</align>
+                  <aligny>center</aligny>
+                  <textcolor>white</textcolor>
+                  <focusedcolor>white</focusedcolor>
+                  <texturefocus>settings/mlb-settings-listitem-on.png</texturefocus>
+                  <texturenofocus>settings/mlb-settings-listitem.png</texturenofocus>
+                  <alttexturefocus>settings/mlb-settings-listitem-on2.png</alttexturefocus>
+                  <alttexturenofocus>settings/mlb-settings-listitem2.png</alttexturenofocus>
+                  <usealttexture>App.HasSetting(nasty)</usealttexture>
+                  <textoffsetx>60</textoffsetx>
+                  <onclick>App.Reset(none)</onclick>
+                  <onclick>App.Reset(mph)</onclick>
+                  <onclick>App.Reset(km/h)</onclick>
+                  <onclick>App.SetBool(nasty, true)</onclick>
+                  <onclick lang="python">
+                     <![CDATA[
+mc.GetApp().GetLocalConfig().SetValue("pitches", "nasty")
+mc.ShowDialogNotification('PITCH f/x set to Nasty Factor','mlb-icon.png')
+xbmc.executebuiltin("Dialog.Close(14013)")
+]]>
+</onclick>
+               </control>
+            </control>
+         </control>
+      </control>
+	 </controls>
+</window>
