@@ -4,5 +4,5 @@ MLB streaming app for the Boxee Box by Shawn Rieger (http://www.boxee.tv/) - Wat
 
 Screens
 -------
-<img src="/screens/mlb_bbx_01.png" width="600">
-<img src="/screens/mlb_bbx_02.png" width="600">
+<img src="/screens/mlb_bbx_01.jpg" width="600">
+<img src="/screens/mlb_bbx_02.jpg" width="600">
